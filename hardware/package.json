@@ -1,0 +1,26 @@
+{
+  "name": "TesselWebSocketLED",
+  "version": "0.1.0",
+  "description": "Control LED with tessel over websocket connection",
+  "main": "hardware.js",
+  "dependencies": {
+    "nodejs-websocket": "^1.2.0"
+  },
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/matteo-hertel/TesselWebSocketLED.git"
+  },
+  "keywords": [
+    "Tessel",
+    "WebSocket"
+  ],
+  "author": "Matteo Hertel <info@matteohertel.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteo-hertel/TesselWebSocketLED/issues"
+  },
+  "homepage": "https://github.com/matteo-hertel/TesselWebSocketLED"
+}
