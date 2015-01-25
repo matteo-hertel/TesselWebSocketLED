@@ -83,7 +83,12 @@ function LEDWebsocket() {
         self.connection = null;
         self.status.innerHTML = "Connecting";
         self.status.className = "";
-        self.connection = new WebSocket('ws://' + self.serverIP + ':' + self.serverPort + "/chat");
+        try {
+            self.connection = new WebSocket('ws://' + self.serverIP.trim() + ':' + self.serverPort.trim() + "/chat");
+        } catch (exc) {
+            self.status.innerHTML = "Invalid server parameters";
+            return false;
+        }
         self.bindConnectionEvent();
     };
 
@@ -148,6 +153,8 @@ function LEDWebsocket() {
         if (self.localStorage) {
             self.saveToLocalStorage();
         }
+        self.status.innerHTML = "Storage saved";
+        self.snap.close();
         self.createConnection();
     };
     this.saveToLocalStorage = function() {
@@ -158,8 +165,17 @@ function LEDWebsocket() {
     };
     this.clearData = function() {
         localStorage.removeItem("serverConfiguration");
+        self.status.innerHTML = "Storage cleared";
+        self.snap.close();
+        self.reset();
     };
-
+    this.reset = function() {
+        self.connection.close();
+        self.serverID.value = "";
+        self.portID.value = "";
+        self.status.className = "";
+        self.status.innerHTML = "Not Connected";
+    };
 
     this.run = function() {
         this.preprocess();
